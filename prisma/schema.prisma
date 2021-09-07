@@ -1,0 +1,22 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Data source: Specifies your database connection.
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+// Generator: Indicates that you want to generate Prisma Client.
+generator client {
+  provider = "prisma-client-js"
+}
+
+// Data model: Defines your application models. 
+// Each model will be mapped to a table in the underlying database.
+model Link {
+  id            Int       @id @default(autoincrement())
+  createdAt     DateTime  @default(now())
+  description   String
+  url           String
+}
