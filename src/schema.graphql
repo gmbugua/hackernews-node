@@ -1,23 +1,34 @@
 type Query {
   feed: [Link!]!
 
-  # fetch a single link by id
+  # Fetch a Link entry through Read op
   link(id: ID!): Link
 }
 
 type Mutation {
-  # Add a link
+  # Create a Link entry
   post(url: String!, description: String!): Link!
 
-  # Update a link
-  updateLink(id: ID!, url: String, description: String): Link
+  # Update a Link entry
+  update(id: ID!, url: String, description: String): Link
 
-  # Delete a link
-  deleteLink(id: ID!): Link
+  # Delete a Link entry
+  delete(id: ID!): Link
+
+  # Authentication
+  signup(email: String!, password: String!, name: String!): AuthPayload
+  login(email: String!, password: String!): AuthPayload
 }
 
 type Link {
   id: ID!
   description: String!
   url: String!
+}
+
+type User {
+  id: ID!
+  name: String!
+  email: String!
+  links: [Link!]!
 }

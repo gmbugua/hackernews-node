@@ -48,24 +48,25 @@ const resolvers = {
       })
       return newLink
     },
-    updateLink: async (parent, args, context, info) => {
+    update: async (parent, args, context, info) => {
       const updatedLink = await context.prisma.link.update({
         where: {
-          id: args.id
+          id: Number(args.id),
         },
         data: {
           url: args.url,
-          description: args.description
-        }
-      })
+          description: args.description,
+        },
+      });
       return updatedLink
     },
-    deleteLink: (parent, args, context, info) => {
+    delete: async (parent, args, context, info) => {
       const deletedLink = await context.prisma.link.delete({
         where: {
-          id: args.id
-        }
-      })
+          id: Number(args.id),
+        },
+      });
+      return deletedLink
     },
   },
 };

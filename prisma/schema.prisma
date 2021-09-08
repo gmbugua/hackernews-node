@@ -15,8 +15,18 @@ generator client {
 // Data model: Defines your application models. 
 // Each model will be mapped to a table in the underlying database.
 model Link {
-  id            Int       @id @default(autoincrement())
-  createdAt     DateTime  @default(now())
-  description   String
-  url           String
+  id          Int       @id @default(autoincrement())
+  createdAt   DateTime  @default(now())
+  description String
+  url         String
+  postedBy    User?     @relation(fields: [postedById], references: [id])
+  postedById  Int?
+}
+
+model User {
+  id        Int     @id @default(autoincrement())
+  name      String
+  email     String  @unique
+  password  String
+  links     Link[]
 }
