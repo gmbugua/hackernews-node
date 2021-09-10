@@ -10,6 +10,7 @@ type Query {
 type Mutation {
   # Create a Link entry
   postLink(url: String!, description: String!): Link!
+  vote(linkId: ID!): Vote
 
   # Update a Link entry
   # updateLink(id: ID!, url: String, description: String): Link
@@ -25,6 +26,7 @@ type Mutation {
 
 type Subscription {
   newLink: Link
+  newVote: Vote
 }
 
 type Link {
@@ -32,6 +34,7 @@ type Link {
   description: String!
   url: String!
   postedBy: User
+  votes: [User!]!
 }
 
 type AuthPayload {
@@ -44,4 +47,11 @@ type User {
   name: String!
   email: String!
   links: [Link!]!
+  votes: [User!]!
+}
+
+type Vote {
+  id: ID!
+  link: Link!
+  user: User!
 }

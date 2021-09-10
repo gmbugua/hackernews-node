@@ -14,6 +14,7 @@ const Mutation = require("./resolvers/Mutation");
 const Subscription = require("./resolvers/Subscription");
 const User = require("./resolvers/User");
 const Link = require("./resolvers/Link");
+const Vote = require("./resolvers/Vote");
 
 // FILE I/O
 const fs = require("fs");
@@ -53,7 +54,8 @@ const { getUserId } = require("./utils");
     Mutation,
     Subscription,
     User,
-    Link
+    Link,
+    Vote
   };
 
   const schema = makeExecutableSchema({typeDefs, resolvers})
