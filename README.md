@@ -1,12 +1,11 @@
 # Hackernews Clone
 
 ## Intro
-+ Devleoped a clone of the Hackernews platform as a learning excercise.
++ Devleoped a clone of the Hackernews backend as a learning excercise.
 
 ## Description
 
-+ Using GraphQL, SQLite and Apollo I created the backend service for the clone. 
-As for the frontend, I used Gatsby. 
++ Backend uses GraphQL, SQLite, Prisma and Apollo 
 
 ## Acknowledgements
 
