@@ -1,31 +1,23 @@
 type Query {
   feed: [Link!]!
-
-  # Fetch a Link entry through Read op
   link(id: ID!): Link
-  user(id: ID!): User
+  user(email: String!): User
 }
 
 type Mutation {
-  # Create a Link entry
+
+  # LINKS
   postLink(url: String!, description: String!): Link!
+  updateLink(id: ID!, url: String, description: String): Link
+  deleteLink(id: ID!): Link
+  
+  # VOTES
   vote(linkId: ID!): Vote
 
-  # Update a Link entry
-  # updateLink(id: ID!, url: String, description: String): Link
-
-  # Delete a Link entry
-  # deleteLink(id: ID!): Link
-
-  # Authentication
+  # AUTHENTICATION
   signup(name: String!, email: String!, password: String!): AuthPayload
-
   login(email: String!, password: String!): AuthPayload
-}
 
-type Subscription {
-  newLink: Link
-  newVote: Vote
 }
 
 type Link {
@@ -34,11 +26,6 @@ type Link {
   url: String!
   postedBy: User
   votes: [User!]!
-}
-
-type AuthPayload {
-  token: String
-  user: User
 }
 
 type User {
@@ -53,4 +40,14 @@ type Vote {
   id: ID!
   link: Link!
   user: User!
+}
+
+type AuthPayload {
+  token: String
+  user: User
+}
+
+type Subscription {
+  newLink: Link
+  newVote: Vote
 }

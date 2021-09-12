@@ -93,41 +93,68 @@ async function vote(parent, args, context, info) {
   return newVote
 }
 
-/*
-  async function updateLink(parent, args, context, info) {
-    const { userId } = context
 
+async function updateLink(parent, args, context, info) {
+  const { userId } = context
+
+  const user = await context.prisma.link.findUnique({
+    where: {
+      id: Number(args.id)
+    }
+  }).postedBy()
+
+  if (user.id === userId) {
     const updatedLink = await context.prisma.link.update({
       where: {
         id: Number(args.id),
-        postedBy: userId 
       },
       data: {
         url: args.url,
         description: args.description,
       },
     });
-    
-    return updatedLink
+
+    return updatedLink;
   }
 
-  async function deleteLink(parent, args, context, info) {
-    const { userId } = context;
+  throw new Error(
+    `Cannot update link. Currently authenticated user's userId:${userId} does 
+    not match link postedById: ${user.id}.`
+  );
+  
+}
 
+async function deleteLink(parent, args, context, info) {
+  const { userId } = context;
+
+  const user = await context.prisma.link.findUnique({
+      where: {
+        id: Number(args.id),
+      },
+    }).postedBy();
+
+  if (user.id === userId) {
     const deletedLink = await context.prisma.link.delete({
       where: {
         id: Number(args.id),
-        postedBy: userId,
       },
     });
 
     return deletedLink
   }
-*/
+
+  throw new Error(
+    `Cannot delete link. Currently authenticated user's userId:${userId} does 
+    not match link postedById: ${user.id}.`
+  );
+
+}
 
 module.exports = {
   signup,
   login,
   postLink,
-  vote
+  vote,
+  updateLink,
+  deleteLink
 };
