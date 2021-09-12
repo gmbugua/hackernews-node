@@ -1,11 +1,11 @@
-# Hackernews Clone
+# Hackernews Node Backend Clone
 
 ## Intro
 + Devleoped a clone of the Hackernews backend as a learning excercise.
 
 ## Description
 
-+ Backend uses GraphQL, SQLite, Prisma and Apollo 
++ Backend uses GraphQL, SQLite, Prisma and Apollo-Server Express 
 
 ## Acknowledgements
 

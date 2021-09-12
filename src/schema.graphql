@@ -2,9 +2,8 @@ type Query {
   feed: [Link!]!
 
   # Fetch a Link entry through Read op
-  # link(id: ID!): Link
-
-  # user(id: ID!): User
+  link(id: ID!): Link
+  user(id: ID!): User
 }
 
 type Mutation {
